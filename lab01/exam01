@@ -1,0 +1,18 @@
+      ******************************************************************
+      * Author:Asvanee Arong
+      * Date:30/06/68
+      * Purpose:exam01
+      * Tectonics: cobc
+      ******************************************************************
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. YOUR-PROGRAM-NAME.
+       DATA DIVISION.
+       FILE SECTION.
+       WORKING-STORAGE SECTION.
+       PROCEDURE DIVISION.
+       MAIN-PROCEDURE.
+            DISPLAY "Wellcome to "
+            DISPLAY "Asvanee Arong"
+            DISPLAY "Programe"
+            STOP RUN.
+       END PROGRAM YOUR-PROGRAM-NAME.

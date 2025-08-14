@@ -1,0 +1,60 @@
+      ******************************************************************
+      * Author: Asvanee Arong
+      * Date: 21/07/68
+      * Purpose:
+      * Tectonics: cobc
+      ******************************************************************
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. DEMO-INSERT-CHAR.
+       DATA DIVISION.
+       FILE SECTION.
+       WORKING-STORAGE SECTION.
+       *> Raw Data
+       01 SRC-AMOUNT PIC S9(5)V99.
+       01 SRC-DATE PIC 9(8) VALUE 21072025.
+       01 SRC-VALUE PIC 9(4) VALUE 1234.
+       *> Edition Data
+       01 EDT-MONEY PIC $Z,ZZZ,ZZ9.99.
+       01 EDT-CREDIT PIC $Z,ZZZ,ZZ9.99CR.
+       01 EDT-DEBIT PIC $Z,ZZZ,ZZ9.99DB.
+       01 EDT-SIGN-P PIC +ZZ,ZZ9.99.
+       01 EDT-SIGN-M PIC -ZZ,ZZ9.99.
+       01 EDT-DATE PIC 99/99/9999.
+       01 EDT-VAL PIC 9(4)000.
+
+       PROCEDURE DIVISION.
+       MAIN-PROCEDURE.
+            DISPLAY "--- Demo Insertion Character ---".
+            MOVE 12345.67 TO SRC-AMOUNT.
+            MOVE SRC-AMOUNT TO EDT-MONEY.
+      *>       DISPLAY "ข้อมูลดิบคือ " SRC-AMOUNT.
+            DISPLAY "แปลงเป็น " EDT-MONEY.
+
+            MOVE -12345.67 TO SRC-AMOUNT.
+            MOVE SRC-AMOUNT TO EDT-CREDIT.
+      *>       DISPLAY "ข้อมูลดิบคือ " SRC-AMOUNT.
+            DISPLAY "แปลงเป็น " EDT-CREDIT.
+
+            MOVE -12345.67 TO SRC-AMOUNT.
+            MOVE SRC-AMOUNT TO EDT-DEBIT.
+      *>       DISPLAY "ข้อมูลดิบคือ " SRC-AMOUNT.
+            DISPLAY "แปลงเป็น " EDT-DEBIT.
+
+            MOVE 123.45 TO SRC-AMOUNT.
+            MOVE SRC-AMOUNT TO EDT-SIGN-P.
+      *>       DISPLAY "ข้อมูลดิบคือ " SRC-AMOUNT.
+            DISPLAY "แปลงเป็น " EDT-SIGN-P.
+
+            MOVE -123.45 TO SRC-AMOUNT.
+            MOVE SRC-AMOUNT TO EDT-SIGN-M.
+      *>       DISPLAY "ข้อมูลดิบคือ " SRC-AMOUNT.
+            DISPLAY "แปลงเป็น " EDT-SIGN-M.
+
+            MOVE SRC-DATE TO EDT-DATE.
+            DISPLAY "วัน/เดือน/ปี : " EDT-DATE.
+
+            MOVE SRC-VALUE TO EDT-VAL.
+            DISPLAY "ผลการเติม : " EDT-VAL.
+
+            STOP RUN.
+       END PROGRAM DEMO-INSERT-CHAR.

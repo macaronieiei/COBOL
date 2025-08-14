@@ -1,0 +1,79 @@
+      ******************************************************************
+      * Author: Author: Asvanee Arong
+      * Date: 04/08/68
+      * Purpose:
+      * Tectonics: cobc
+      ******************************************************************
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. SNACK-MACHINE.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 SANCK-DATA.
+           05 SNACK-1   PIC X(10) VALUE "Coke".
+           05 SNACK-2   PIC X(10) VALUE "Pepsi".
+           05 SNACK-3   PIC X(10) VALUE "Fanta".
+           05 SNACK-4   PIC X(10) VALUE "Sprite".
+           05 SNACK-5   PIC X(10) VALUE "Schwap".
+       01 SNACK-LIST REDEFINES SANCK-DATA.
+           05 SNACK                PIC X(10)   OCCURS 5 TIMES.
+       01 SELECT-ITEM.
+           05 SNACK-SELECT             PIC 9.
+           05 SNACK-SELECT-COUNTER     PIC 9       VALUE 0.
+           05 SNACK-SELECT-CONTINUE    PIC X       VALUE 'Y'.
+           05 SNACK-COUNTER            PIC 9       VALUE 1.
+       01 CONTROL-MACHINE.
+           05 WS-ITEM-PRICE    PIC 99      VALUE 15.
+           05 WS-ITEM-TOTAL    PIC 99.
+           05 WS-MONEY-INSERTE PIC 99.
+           05 WS-TOTAL-MONEY   PIC 99      VALUE 0.
+           05 WS-CONTINUE-FLAG PIC X       VALUE 'Y'.
+
+       PROCEDURE DIVISION.
+       MAIN-PROCEDURE.
+           DISPLAY "--- Welcome to COBOL Vending Machine ---"
+           PERFORM WITH TEST AFTER UNTIL WS-CONTINUE-FLAG = 'N' OR
+           WS-CONTINUE-FLAG = 'n'
+      *>      Show Menu and Select Item
+               PERFORM VARYING SNACK-COUNTER FROM 1 BY 1
+               UNTIL SNACK-COUNTER > 5
+                   DISPLAY SNACK-COUNTER "." SNACK(SNACK-COUNTER)
+               END-PERFORM
+               PERFORM WITH TEST AFTER UNTIL SNACK-SELECT-CONTINUE = 'N'
+               OR SNACK-SELECT-CONTINUE = 'n'
+                   DISPLAY "Please select an item (Price : 15 Baht)"
+                   ACCEPT SNACK-SELECT
+                   ADD 1 TO SNACK-SELECT-COUNTER
+                   DISPLAY "DO YOU WANTS TO SELECT MORE? :"
+                   ACCEPT SNACK-SELECT-CONTINUE
+               END-PERFORM
+               DISPLAY "Total Seclected Snack : " SNACK-SELECT-COUNTER
+               DISPLAY " "
+      *>       Process-Payment
+               COMPUTE WS-ITEM-TOTAL = SNACK-SELECT-COUNTER *
+               WS-ITEM-PRICE
+               DISPLAY "Total : " WS-ITEM-TOTAL
+               PERFORM UNTIL WS-ITEM-TOTAL <= WS-TOTAL-MONEY
+                   DISPLAY "Please insert money : "
+                   ACCEPT WS-MONEY-INSERTE
+                   ADD WS-MONEY-INSERTE TO WS-TOTAL-MONEY
+                   DISPLAY "Current total : " WS-TOTAL-MONEY
+               END-PERFORM
+               DISPLAY "Payment successful."
+               DISPLAY " "
+      *>       Dispance-Item
+               PERFORM SNACK-SELECT-COUNTER TIMES
+                   DISPLAY "*****************"
+               END-PERFORM
+               DISPLAY "*** THANK YOU ***"
+               PERFORM SNACK-SELECT-COUNTER TIMES
+                   DISPLAY "*****************"
+               END-PERFORM
+               DISPLAY " "
+      *>       Ask-Continue
+                  DISPLAY "Do you want to continue buying? (Y/N) :"
+                  ACCEPT WS-CONTINUE-FLAG
+           END-PERFORM
+           DISPLAY " "
+           DISPLAY "Program shutting down"
+           STOP RUN.
+       END PROGRAM SNACK-MACHINE.

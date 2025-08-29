@@ -1,0 +1,7 @@
+1001John Kim       IT        0007800000
+1002Alice Chan     Web       0009500000
+1003Carol Lim      Product   0011000000
+1004Dave Koh       Web       0007255075
+1005Eve Ta         AI        0012000025
+1006Wa Wa          IT        0015000000
+1007Banana Bee     Product   0004561254

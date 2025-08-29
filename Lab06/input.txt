@@ -1,0 +1,4 @@
+Hello from line 1 of the text file.
+This is the second line.
+Cobol is easy.
+End of file.
